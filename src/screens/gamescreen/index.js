@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { calculateWinner } from '../../components/utils/helpers';
 import { Styles } from './style';
 
-const GameScreen = ({ type, onChangeGame }) => {
+const GameScreen = ({ navigation }) => {
   const [board, setBoard] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXisNext] = useState(true);
@@ -26,13 +26,8 @@ const GameScreen = ({ type, onChangeGame }) => {
     setXisNext(!xIsNext);
   };
 
-  const handleResetGame = () => {
-    onChangeGame(false);
-  };
-
   return (
     <View style={Styles.container}>
-      <Text style={Styles.title}>{type}</Text>
       <Board squares={board[stepNumber]} onClick={handleClick} />
       <Text style={[Styles.turn, winner && Styles.winner]}>
         {winner ? `Ganador Jugador "${winner}" !!` : `Siguiente Jugador: ${xO}`}
@@ -47,7 +42,7 @@ const GameScreen = ({ type, onChangeGame }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={Styles.customBtnBG}
-          onPress={() => handleResetGame()}>
+          onPress={() => navigation.navigate('Game Start')}>
           <Text style={Styles.customBtnText}>Volver</Text>
         </TouchableOpacity>
       </View>

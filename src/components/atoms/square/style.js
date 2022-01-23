@@ -9,8 +9,7 @@ export const Styles = StyleSheet.create({
   },
   text: {
     textAlign: 'center',
-    flexBasis: '30%',
-    paddingTop: '25%',
+    padding: '15%',
     fontSize: 50,
   },
 

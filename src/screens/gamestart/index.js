@@ -2,12 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { Styles } from './style';
 
-const GameStart = ({ onChangeGame, onChangeType }) => {
-  const handleStartGame = type => {
-    onChangeType(type);
-    onChangeGame(true);
-  };
-
+const GameStart = ({ navigation }) => {
   const AlertNotFound = () =>
     Alert.alert('En desarrollo', 'Esta modalidad aun no esta disponible', [
       { text: 'OK' },
@@ -24,7 +19,7 @@ const GameStart = ({ onChangeGame, onChangeType }) => {
         </TouchableOpacity>
         <TouchableOpacity
           style={Styles.customBtnBG}
-          onPress={() => handleStartGame('Player vs Player')}>
+          onPress={() => navigation.navigate('Game Screen')}>
           <Text style={Styles.customBtnText}>VS. Player</Text>
         </TouchableOpacity>
       </View>

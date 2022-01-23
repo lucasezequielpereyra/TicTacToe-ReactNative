@@ -30,6 +30,6 @@ export const Styles = StyleSheet.create({
     padding: '3%',
     borderRadius: 5,
     marginHorizontal: '.8%',
-    marginTop: '15%',
+    marginTop: '3%',
   },
 });
