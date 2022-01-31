@@ -1,36 +1,44 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'react-native';
-import GameStart from '../screens/gamestart/index';
-import GameScreen from '../screens/gamescreen/index';
 import Header from '../components/molecules/header/index';
 
-const Stack = createNativeStackNavigator();
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import GameNavigation from './Game/index';
+import ProfileNavigation from './Profile/index';
+
+const BottomTabs = createBottomTabNavigator();
 
 const AppNavigation = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor="#2B4570" barStyle="light-content" />
       <Header />
-      <Stack.Navigator initialRouteName="Game Start">
-        <Stack.Screen
-          name="Game Start"
-          component={GameStart}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Game Screen"
-          component={GameScreen}
+      <BottomTabs.Navigator
+        initialRouteName="Game"
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <BottomTabs.Screen
+          name="Game"
+          component={GameNavigation}
           options={{
-            title: 'Player vs Player',
-            headerStyle: {
-              backgroundColor: '#7180AC',
-            },
-            headerTintColor: '#FFFFFF',
+            tabBarIcon: ({ focused }) => (
+              <Ionicons name="game-controller-sharp" size={20} />
+            ),
           }}
         />
-      </Stack.Navigator>
+        <BottomTabs.Screen
+          name="Profile"
+          component={ProfileNavigation}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Ionicons name="home-sharp" size={20} />
+            ),
+          }}
+        />
+      </BottomTabs.Navigator>
     </NavigationContainer>
   );
 };
